@@ -1,14 +1,18 @@
 import { IModule } from "angular";
 
 import { ReactBridge } from "./bridge";
-import { ReactComponent } from "./ReactComponent";
+import { NameForm } from "./React/NameForm";
+import { NameDisplay } from "./React/NameDisplay";
+import { NameSet } from "./React/NameSet";
 
 const componentsToRegister = [
-  { name: "reactComponent", component: ReactComponent }
+  { name: "nameForm", component: NameForm },
+  { name: "nameDisplay", component: NameDisplay },
+  { name: "nameSet", component: NameSet }
 ];
 
-export const registerReactComponents = (ngModule: IModule) => {
+export function registerReactComponents(ngModule: IModule) {
   componentsToRegister.forEach(({ name, component }) => {
     ngModule.directive(name, ReactBridge(component));
   });
-};
+}
